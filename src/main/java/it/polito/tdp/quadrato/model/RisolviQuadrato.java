@@ -8,31 +8,31 @@ public class RisolviQuadrato {
 	private int N2 ; // numero di caselle (N^2)
 	private int magica ; // costante magica
 	
-	private List<List<Integer>> soluzioni;
+	private List<List<Integer>> soluzioni; // lista che ha, come suoi elementi interni, delle liste di interi
 	
 	public RisolviQuadrato(int N) {
-		this.N = N ;
-		this.N2 = N*N ;
-		this.magica = N*(N2+1)/2 ;
+		this.N = N; // Dimensione del quadrato
+		this.N2 = N*N; // Numero di caselle
+		this.magica = N*(N2+1)/2;	// Somma di una riga/colonna/diagonale
 	}
 	
 	// Calcola tutti i quadrati magici
 	public List<List<Integer>> quadrati() {
-		List<Integer> parziale = new ArrayList<>() ;
-		int livello = 0 ;
+		List<Integer> parziale = new ArrayList<>();
+		int livello = 0;
 		
 		this.soluzioni = new ArrayList<List<Integer>>() ;
 		
-		cerca(parziale, livello) ;
+		cerca(parziale, livello);
 		
-		return this.soluzioni ;
+		return this.soluzioni;
 	}
 	
 	// procedura ricorsiva (privata)
 	private void cerca(List<Integer> parziale, int livello) {
 		
 		if(livello==N2) {
-			// caso terminale
+			// caso terminale -> ho un quadrato completo
 			if(controlla(parziale)) {
 				// è magico!!
 				System.out.println(parziale) ;
@@ -64,6 +64,7 @@ public class RisolviQuadrato {
 	 * @return
 	 */
 	private boolean controlla(List<Integer> parziale) {
+		// Controllo che la soluzione sia completa, quindi che il quadrato sia completamente riempito
 		if(parziale.size()!=this.N*this.N)
 			throw new IllegalArgumentException("Numero di elementi insufficiente") ;
 		
